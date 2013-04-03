@@ -21,3 +21,9 @@ function HostListCtrl($scope,Host) {
 HostListCtrl.$inject = ['$scope','Host'];
 
 
+function HostDetailCtrl($scope,$routeParams,Host) {
+	var payload = Host.get({"hostname":$routeParams.hostname},function() {
+		$scope.host = payload.host;
+		$scope.status = payload.ok;
+	});
+}

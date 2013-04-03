@@ -1,5 +1,5 @@
 <h2>Hosts</h2>
 <table class="table table-striped">
-	<tr ng-repeat="h in hosts"><td>{{h.primary_ip}}</td><td>{{h.hostname}}</td><td>{{h.description}}</td></tr>
+	<tr ng-repeat="h in hosts"><td>{{h.primary_ip}}</td><td><a ng-href="#/host/{{h.hostname}}">{{h.hostname}}</a></td><td>{{h.description}}</td></tr>
 </table>
 

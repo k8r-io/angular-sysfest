@@ -1,0 +1,24 @@
+<h2>{{host.hostname}}</h2>
+
+<table class="table">
+<tr>
+	<td>Description</td><td>{{host.description}}</td>
+</tr>
+<tr>
+	<td>Tags</td><td>{{host.tags}}</td>
+</tr>
+<tr>
+	<td>Homes</td>
+	<td>
+		<table class="table">
+			<tbody ng-repeat="home in host.homes">
+				<tr><td rowspan={{home.hostnames.length}}>{{home.name}}</td><td rowspan={{home.hostnames.length}}>{{home.ip}}</td><td>{{home.hostnames[0].val}}</td></tr>
+				<tr ng-repeat="hostname in home.hostnames.slice(1)"><td>{{hostname.val}}</td></tr>
+			</tr>
+		</table>
+	</td>
+
+</tr>
+
+</table>
+
