@@ -32,7 +32,6 @@ function HostEditCtrl($scope,$routeParams,Host) {
 	var payload = Host.get({"hostname":$routeParams.hostname},function() {
 		$scope.host = payload.host;
 		$scope.status = payload.ok;
-		$('#tags-list').tagsInput();
 	});
 
 	$scope.addHostname = function(home) {
