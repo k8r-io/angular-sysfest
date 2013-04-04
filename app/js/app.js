@@ -6,5 +6,6 @@ angular.module('sysfest', ['sysfest.filters', 'sysfest.services', 'sysfest.direc
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/hostlist', {templateUrl: 'partials/host_list.html', controller: HostListCtrl});
     $routeProvider.when('/host/:hostname', {templateUrl: 'partials/host_detail.html', controller: HostDetailCtrl});
+    $routeProvider.when('/host/:hostname/edit', {templateUrl: 'partials/host_edit.html', controller: HostEditCtrl});
     $routeProvider.otherwise({redirectTo: '/hostlist'});
   }]);

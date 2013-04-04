@@ -27,3 +27,17 @@ function HostDetailCtrl($scope,$routeParams,Host) {
 		$scope.status = payload.ok;
 	});
 }
+
+function HostEditCtrl($scope,$routeParams,Host) {
+	var payload = Host.get({"hostname":$routeParams.hostname},function() {
+		$scope.host = payload.host;
+		$scope.status = payload.ok;
+	});
+
+	$scope.addHostname = function(home) {
+		home.hostnames.push({"val":""});
+	}
+	$scope.addHome = function(homes) {
+		homes.push({"name":"","ip":"","hostnames":[{"val":""}]});
+	}
+}
