@@ -7,7 +7,5 @@
 // In this case it is a simple value service.
 angular.module('sysfest.services', ['ngResource']).
 	factory('Host',function($resource) {
-		return $resource('/api/host/:hostname',{}, {
-			'query': { method: 'GET', isArray: false }
-		});
+		return $resource('/api/host/:hostname',{}, {});
 	});

@@ -4,35 +4,25 @@
 
 
 function HostListCtrl($scope,Host) {
-	var payload = Host.query(function() {
-		console.log(payload);
-		for(var i = 0;i<payload.hosts.length;i++) {
-			for(var j=0; j<payload.hosts[i]["homes"].length; j++) {
-				console.log(payload.hosts[i]["homes"][j]);
-				if(payload.hosts[i]["homes"][j]["name"]=="eth0") {
-					payload.hosts[i]["primary_ip"]=payload.hosts[i]["homes"][j]["ip"];
+	$scope.hosts = Host.query(function() {
+		for(var i = 0;i<$scope.hosts.length;i++) {
+			for(var j=0; j<$scope.hosts[i]["homes"].length; j++) {
+				if($scope.hosts[i]["homes"][j]["name"]=="eth0") {
+					$scope.hosts[i]["primary_ip"]=$scope.hosts[i]["homes"][j]["ip"];
 				}
 			}
 		}
-		$scope.hosts = payload.hosts;
-		$scope.status = payload.ok
 	});
 }
 HostListCtrl.$inject = ['$scope','Host'];
 
 
 function HostDetailCtrl($scope,$routeParams,Host) {
-	var payload = Host.get({"hostname":$routeParams.hostname},function() {
-		$scope.host = payload.host;
-		$scope.status = payload.ok;
-	});
+	$scope.host = Host.get({"hostname":$routeParams.hostname});
 }
 
 function HostEditCtrl($scope,$routeParams,Host) {
-	var payload = Host.get({"hostname":$routeParams.hostname},function() {
-		$scope.host = payload.host;
-		$scope.status = payload.ok;
-	});
+	$scope.host = Host.get({"hostname":$routeParams.hostname});
 
 	$scope.addHostname = function(home) {
 		home.hostnames.push({"val":""});
@@ -43,4 +33,8 @@ function HostEditCtrl($scope,$routeParams,Host) {
 	$scope.addTag = function() {
 		$scope.host.tags.push($scope.newTag);
 	}
+	$scope.update = function() {
+		$scope.host.save();
+	}
+
 }

@@ -1,3 +1,5 @@
+<div class="row">
+<div class="span12">
 <h2>Edit {{host.hostname}}</h2>
 <table class="table">
 <tr>
@@ -12,7 +14,7 @@
 		<ul class="inline"><li ng-repeat="tag in host.tags">{{tag}}<a ng-click="host.tags.splice($index,1)"><i class="icon-remove"></i></a></ul>
 		 <div class="input-append">
 			 <input type="text" ng-model="newTag" size="30" placeholder="new tag">
-			 <input class="btn btn-primary" type="submit" value="add" ng-click="addTag()">
+			 <input class="btn btn-primary" type="button" value="add" ng-click="addTag()">
 		 </div>
 	</td>
 </tr>
@@ -29,12 +31,15 @@
 				<tr ng-repeat="hostname in home.hostnames.slice(1)">
 					<td><input type="text" ng-model="hostname.val"/><a ng-click="home.hostnames.splice($index+1,1)"><i class="icon-remove"></i></a></td>
 				</tr>
-				<tr><td><input class="btn" type="button" value="+" ng-click="addHostname(home)"/></td></tr>
+				<tr><td><input class="btn btn-primary" type="button" value="+" ng-click="addHostname(home)"/></td></tr>
 			</tbody>
-			<tr><td><input class="btn" type="button" value="Add home" ng-click="addHome(host.homes)"/></td></tr>
+			<tr><td><input class="btn btn-primary" type="button" value="Add home" ng-click="addHome(host.homes)"/></td></tr>
 		</table>
 	</td>
 </tr>
-
 </table>
-
+</div>
+<div class="span11 offset1">
+	<input type="button" class="btn btn-primary" value="Update" ng-click="update()"/>
+</div
+</div>
