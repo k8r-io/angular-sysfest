@@ -4,7 +4,7 @@
 
 
 function HostListCtrl($scope,Host) {
-	$scope.hosts = Host.query(function() {
+	$scope.hosts = Host.list(function() {
 		for(var i = 0;i<$scope.hosts.length;i++) {
 			for(var j=0; j<$scope.hosts[i]["homes"].length; j++) {
 				if($scope.hosts[i]["homes"][j]["name"]=="eth0") {
@@ -26,6 +26,31 @@ function HostDetailCtrl($scope,$routeParams,Host) {
 	$scope.host = Host.get({"host_id":$routeParams.host_id});
 }
 
+function HostCreateCtrl($scope,$routeParams,Host) {
+	$scope.host = {};
+
+	$scope.addHostname = function(home) {
+		home.hostnames.push({"val":""});
+	}
+	$scope.addHome = function() {
+		if( typeof $scope.host.homes == 'undefined' ||  ! $scope.host.homes instanceof Array) {		
+			$scope.host.homes=[];
+		}
+		$scope.host.homes.push({"name":"","ip":"","hostnames":[{"val":""}]});
+	}
+	$scope.addTag = function() {
+		if( ! $scope.host.tags instanceof Array) {		
+			$scope.host.tags=[];
+		}
+		$scope.host.tags.push($scope.newTag);
+	}
+	$scope.save = function() {
+		var new_host = new Host($scope.host);
+		new_host.$save();
+		console.log($scope.host)
+	}
+}
+
 function HostEditCtrl($scope,$routeParams,Host) {
 	$scope.host = Host.get({"host_id":$routeParams.host_id});
 
@@ -38,9 +63,8 @@ function HostEditCtrl($scope,$routeParams,Host) {
 	$scope.addTag = function() {
 		$scope.host.tags.push($scope.newTag);
 	}
-	$scope.update = function() {
+	$scope.save = function() {
 		$scope.host.$save();
 		console.log($scope.host)
 	}
-
 }
