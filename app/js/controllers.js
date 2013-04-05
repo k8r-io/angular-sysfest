@@ -13,16 +13,21 @@ function HostListCtrl($scope,Host) {
 			}
 		}
 	});
+
+	$scope.delete = function(host) {
+		Host.delete({'host_id':host["_id"]})
+	}
+
 }
 HostListCtrl.$inject = ['$scope','Host'];
 
 
 function HostDetailCtrl($scope,$routeParams,Host) {
-	$scope.host = Host.get({"hostname":$routeParams.hostname});
+	$scope.host = Host.get({"host_id":$routeParams.host_id});
 }
 
 function HostEditCtrl($scope,$routeParams,Host) {
-	$scope.host = Host.get({"hostname":$routeParams.hostname});
+	$scope.host = Host.get({"host_id":$routeParams.host_id});
 
 	$scope.addHostname = function(home) {
 		home.hostnames.push({"val":""});
@@ -34,7 +39,8 @@ function HostEditCtrl($scope,$routeParams,Host) {
 		$scope.host.tags.push($scope.newTag);
 	}
 	$scope.update = function() {
-		$scope.host.save();
+		$scope.host.$save();
+		console.log($scope.host)
 	}
 
 }
