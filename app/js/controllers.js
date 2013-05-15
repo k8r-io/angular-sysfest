@@ -3,7 +3,7 @@
 /* Controllers */
 
 
-function HostListCtrl($scope,Host) {
+function HostListCtrl($scope,Host,$route) {
 	$scope.hosts = Host.list(function() {
 		for(var i = 0;i<$scope.hosts.length;i++) {
 			for(var j=0; j<$scope.hosts[i]["homes"].length; j++) {
@@ -16,17 +16,18 @@ function HostListCtrl($scope,Host) {
 
 	$scope.delete = function(host) {
 		Host.delete({'host_id':host["_id"]})
+		$route.reload();
 	}
 
 }
-HostListCtrl.$inject = ['$scope','Host'];
+HostListCtrl.$inject = ['$scope','Host','$route'];
 
 
 function HostDetailCtrl($scope,$routeParams,Host) {
 	$scope.host = Host.get({"host_id":$routeParams.host_id});
 }
 
-function HostCreateCtrl($scope,$routeParams,Host) {
+function HostCreateCtrl($scope,$routeParams,Host,$location) {
 	$scope.host = {};
 
 	$scope.addHostname = function(home) {
@@ -47,11 +48,11 @@ function HostCreateCtrl($scope,$routeParams,Host) {
 	$scope.save = function() {
 		var new_host = new Host($scope.host);
 		new_host.$save();
-		console.log($scope.host)
+		$location.path("/hostlist");
 	}
 }
 
-function HostEditCtrl($scope,$routeParams,Host) {
+function HostEditCtrl($scope,$routeParams,Host,$location,$route) {
 	$scope.host = Host.get({"host_id":$routeParams.host_id});
 
 	$scope.addHostname = function(home) {
@@ -65,6 +66,10 @@ function HostEditCtrl($scope,$routeParams,Host) {
 	}
 	$scope.save = function() {
 		$scope.host.$save();
-		console.log($scope.host)
+		$location.path("/host/"+$routeParams.host_id);
 	}
+	$scope.reset = function() {
+		$route.reload();
+	}
+
 }
