@@ -50,9 +50,12 @@ function HostCreateCtrl($scope,$routeParams,Host,$location) {
 		new_host.$save();
 		$location.path("/hostlist");
 	}
+	$scope.cancel = function() {
+		$location.path("/hostlist");
+	}
 }
 
-function HostEditCtrl($scope,$routeParams,Host,$location,$route) {
+function HostEditCtrl($scope,$routeParams,Host,$location,$route,$window) {
 	$scope.host = Host.get({"host_id":$routeParams.host_id});
 
 	$scope.addHostname = function(home) {
@@ -70,6 +73,9 @@ function HostEditCtrl($scope,$routeParams,Host,$location,$route) {
 	}
 	$scope.reset = function() {
 		$route.reload();
+	}
+	$scope.cancel = function() {
+		$location.path("/host/"+$routeParams.host_id);
 	}
 
 }
