@@ -1,4 +1,5 @@
-<h2>Hosts</h2>
+<h2>Host List</h2>
+<ul class="inline"><a href="#/newhost">New</a></ul>
 <table class="table table-striped">
 	<tr ng-repeat="h in hosts"><td>{{h.primary_ip}}</td><td><a ng-href="#/host/{{h._id}}">{{h.hostname}}</a></td><td>{{h.description}}</td><td><a ng-click="delete(h)"><i class="icon-remove"></i></a></td></tr>
 </table>
