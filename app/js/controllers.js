@@ -40,10 +40,12 @@ function HostCreateCtrl($scope,$routeParams,Host,$location) {
 		$scope.host.homes.push({"name":"","ip":"","hostnames":[{"val":""}]});
 	}
 	$scope.addTag = function() {
-		if( ! $scope.host.tags instanceof Array) {		
+		if( typeof $scope.host.tags == 'undefined' || ! $scope.host.tags instanceof Array) {		
 			$scope.host.tags=[];
 		}
 		$scope.host.tags.push($scope.newTag);
+		$scope.newTag="";
+
 	}
 	$scope.save = function() {
 		var new_host = new Host($scope.host);
