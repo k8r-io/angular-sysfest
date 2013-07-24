@@ -15,8 +15,12 @@ function HostListCtrl($scope, Host, $route) {
 	});
 
 	$scope.delete = function (host) {
-		Host.delete({'host_id':host["_id"]});
-		$route.reload()
+		if (confirm('Are you sure you want to delete '+host["hostname"]+'?')) {
+			Host.delete({'host_id':host["_id"]});
+			$route.reload()
+		} else {
+		}
+
 	};
 
 }
