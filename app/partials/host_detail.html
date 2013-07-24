@@ -1,5 +1,6 @@
+<div class="row">
+<div class="span12">
 <h2>{{host.hostname}}</h2>
-
 <table class="table">
 <tr>
 	<td>Description</td><td>{{host.description}}</td>
@@ -19,6 +20,11 @@
 	</td>
 
 </tr>
-
 </table>
+</div>
+<div class="span11 offset1">
+	<input type="button" class="btn btn-primary" value="Edit" ng-click="edit()"/>
+	<input type="button" class="btn btn-primary" value="Back" ng-click="back()"/>
+</div>
+</div>
 
