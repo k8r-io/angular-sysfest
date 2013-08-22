@@ -1,6 +1,20 @@
-<h2>Host List</h2>
-<ul class="inline"><a href="#/newhost">New</a></ul>
-<table class="table table-striped">
-	<tr ng-repeat="h in hosts"><td>{{h.primary_ip}}</td><td><a ng-href="#/host/{{h._id}}">{{h.hostname}}</a></td><td>{{h.description}}</td><td><a ng-click="delete(h)"><i class="icon-remove"></i></a></td></tr>
-</table>
+<div class="row">
+    <div class="span12"><h2>Host List</h2></div>
+</div>
+<div class="row">
+    <div class="offset4 span8">
+        <form class="form-inline">
+	    <input type="text" ng-model="query" placeholder="search..." class="input-block-level input-xxlarge search-query"/>
+	    <button class="btn" ng-click="search()">Go</button>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="span12">
+        <ul class="inline"><a href="#/newhost">New</a></ul>
+        <table class="table table-striped">
+        	<tr ng-repeat="h in hosts"><td>{{h.primary_ip}}</td><td><a ng-href="#/host/{{h._id}}">{{h.hostname}}</a></td><td>{{h.description}}</td><td><a ng-click="delete(h)"><i class="icon-remove"></i></a></td></tr>
+        </table>
+    </div>
+</div>
 
