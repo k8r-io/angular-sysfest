@@ -8,6 +8,7 @@
 angular.module('sysfest.services', ['ngResource']).
 	factory('Host',function($resource) {
 		return $resource('/api/host/:host_id',{}, {
-			'list':{'url':'/api/host','method':'GET','isArray':true}
+			'list':{'url':'/api/host','method':'GET','isArray':true},
+			'search':{'url':'/api/host/search/:query','method':'GET','isArray':true}
 		});
 	});

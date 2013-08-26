@@ -2,17 +2,7 @@
 
 /* Controllers */
 
-
 function HostListCtrl($scope, Host, $route) {
-	$scope.hosts = Host.list(function () {
-		for(var i = 0;i<$scope.hosts.length;i++) {
-			for(var j=0; j<$scope.hosts[i]["homes"].length; j++) {
-				if($scope.hosts[i]["homes"][j]["name"]=="eth0") {
-					$scope.hosts[i]["primary_ip"]=$scope.hosts[i]["homes"][j]["ip"];
-				}
-			}
-		}
-	});
 
 	$scope.delete = function (host) {
 		if (confirm('Are you sure you want to delete '+host["hostname"]+'?')) {
@@ -22,6 +12,22 @@ function HostListCtrl($scope, Host, $route) {
 		}
 
 	};
+
+	$scope.search = function() {
+		$scope.hosts = Host.search({'query':$scope.query}, $scope.transform);
+	}
+	
+	$scope.transform = function () {
+		for(var i = 0;i<$scope.hosts.length;i++) {
+			for(var j=0; j<$scope.hosts[i]["homes"].length; j++) {
+				if($scope.hosts[i]["homes"][j]["name"]=="eth0") {
+					$scope.hosts[i]["primary_ip"]=$scope.hosts[i]["homes"][j]["ip"];
+				}
+			}
+		}
+	}
+
+	$scope.hosts = Host.list($scope.transform);
 
 }
 
