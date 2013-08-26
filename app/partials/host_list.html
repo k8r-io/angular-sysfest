@@ -13,7 +13,13 @@
     <div class="span12">
         <ul class="inline"><a href="#/newhost">New</a></ul>
         <table class="table table-striped">
-        	<tr ng-repeat="h in hosts"><td>{{h.primary_ip}}</td><td><a ng-href="#/host/{{h._id}}">{{h.hostname}}</a></td><td>{{h.description}}</td><td><a ng-click="delete(h)"><i class="icon-remove"></i></a></td></tr>
+        	<tr ng-repeat="h in hosts">
+                <td>{{h.primary_ip}}</td>
+                <td><a ng-href="#/host/{{h._id}}">{{h.hostname}}</a></td>
+                <td>{{h.tags}}</td>
+                <td>{{h.description}}</td>
+                <td><a ng-click="delete(h)"><i class="icon-remove"></i></a></td>
+            </tr>
         </table>
     </div>
 </div>
