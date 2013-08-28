@@ -22,8 +22,8 @@
 	<td>Homes</td>
 	<td>
 		<table class="table">
+			<tr><th>Interface Name</th><th>IP Address</th><th>Hostname</th></tr>
 			<tbody ng-repeat="home in host.homes">
-				<tr><th>Interface Name</th><th>IP Address</th><th>Hostname</th></tr>
 				<tr>
 					<td rowspan="{{home.hostnames.length+1}}"><input type="text" ng-model="home.name"/><a ng-click="host.homes.splice($index,1)"><i class="icon-remove"></i></a></td>
 					<td rowspan="{{home.hostnames.length+1}}"><input type="text" ng-model="home.ip"/></td>
