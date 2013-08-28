@@ -77,11 +77,18 @@ function HostEditCtrl($scope, $routeParams, Host, $location, $route, $window) {
 	$scope.addHostname = function (home) {
 		home.hostnames.push({"val":""});
 	}
-	$scope.addHome = function (homes) {
-		homes.push({"name":"", "ip":"", "hostnames":[{"val":""}]});
+	$scope.addHome = function () {
+		if( typeof $scope.host.homes == 'undefined' ||  ! $scope.host.homes instanceof Array) {		
+			$scope.host.homes=[];
+		}
+		$scope.host.homes.push({"name":"", "ip":"", "hostnames":[{"val":""}]});
 	}
 	$scope.addTag = function () {
+		if( typeof $scope.host.tags == 'undefined' || ! $scope.host.tags instanceof Array) {		
+			$scope.host.tags=[];
+		}
 		$scope.host.tags.push($scope.newTag);
+		$scope.newTag="";
 	}
 	$scope.save = function () {
 		$scope.host.$save();
