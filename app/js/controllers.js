@@ -7,7 +7,7 @@ function HostListCtrl($scope, Host, $route) {
 	$scope.delete = function (host) {
 		if (confirm('Are you sure you want to delete '+host["hostname"]+'?')) {
 			Host.delete({'host_id':host["_id"]});
-			$route.reload()
+			$route.reload();
 		} else {
 		}
 
@@ -24,6 +24,7 @@ function HostListCtrl($scope, Host, $route) {
 					$scope.hosts[i]["primary_ip"]=$scope.hosts[i]["homes"][j]["ip"];
 				}
 			}
+			$scope.hosts[i]["tags"].sort();
 		}
 	}
 
