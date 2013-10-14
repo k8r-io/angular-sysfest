@@ -33,7 +33,7 @@ function HostListCtrl($scope, Host, $route) {
 }
 
 function HostDetailCtrl($scope, $routeParams, Host, $location) {
-	$scope.host = Host.get({"host_id":$routeParams.host_id});
+	
 	
 	$scope.edit = function () {
 		$location.path("/host/"+$routeParams.host_id+"/edit");
@@ -41,6 +41,8 @@ function HostDetailCtrl($scope, $routeParams, Host, $location) {
 	$scope.back = function () {
 		$location.path("/hostlist");
 	}
+	$scope.order = "name";
+	$scope.host = Host.get({"host_id":$routeParams.host_id});
 }
 
 function HostCreateCtrl($scope, $routeParams, Host, $location) {
@@ -74,6 +76,8 @@ function HostCreateCtrl($scope, $routeParams, Host, $location) {
 
 function HostEditCtrl($scope, $routeParams, Host, $location, $route, $window) {
 	$scope.host = Host.get({"host_id":$routeParams.host_id});
+	$scope.order = "name";
+
 
 	$scope.addHostname = function (home) {
 		home.hostnames.push({"val":""});
