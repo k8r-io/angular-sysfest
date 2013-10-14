@@ -13,7 +13,7 @@
 	<td>
 		<table class="table">
 			<tr><th>Interface Name</th><th>IP Address</th><th>Hostname</th></tr>
-			<tbody ng-repeat="home in host.homes">
+			<tbody ng-repeat="home in host.homes | orderBy:order">
 				<tr><td rowspan={{home.hostnames.length}}>{{home.name}}</td><td rowspan={{home.hostnames.length}}>{{home.ip}}</td><td>{{home.hostnames[0].val}}</td></tr>
 				<tr ng-repeat="hostname in home.hostnames.slice(1)"><td>{{hostname.val}}</td></tr>
 			</tr>
